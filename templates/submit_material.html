@@ -13,16 +13,19 @@
     <header>
         <div id="title" class="container">
             <a href="/">
+                <!-- Button for homepage -->
                 <button style="text-decoration: none; background: none; border:none; font-size: large;" type="button">
                     <h1>StudyHub</h1>
                 </button>
             </a>
             <a href="{% url 'material_list' %}">
+                <!-- Button for viewing materials list -->
                 <button type="button" class="submit-button" id="submit_button">View</button>
             </a>
         </div>
     </header>
     <h1 style="margin-top: 20px;">Submit Material</h1>
+    <!-- Form for submitting material -->
     <form method="post" enctype="multipart/form-data" action="{% url 'submit_material' %}">
         {% csrf_token %}
         <label for="name">Name:</label>
@@ -46,6 +49,7 @@
         <label for="id_category">Category:</label>
         <select id="id_category" name="category" onchange="toggleCategoryInput()">
             {% for category in categories %}
+            <!-- Dropdown options for categories -->
             <option value="{{ category.pk }}">{{ category.name }}</option>
             {% endfor %}
             <option value="none">None</option>
@@ -55,6 +59,7 @@
         <label for="id_grade">Grade:</label>
         <select id="id_grade" name="grade" onchange="toggleGradeInput()">
             {% for grade in grades %}
+            <!-- Dropdown options for grades -->
             <option value="{{ grade.pk }}">{{ grade.name }}</option>
             {% endfor %}
             <option value="none">None</option>

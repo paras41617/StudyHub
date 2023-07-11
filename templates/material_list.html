@@ -10,9 +10,11 @@
     <header>
         <div id="title" class="container">
             <a href="/">
+                <!-- Button for homepage -->
                 <button style="text-decoration: none; background: none; border:none; font-size: large;" type="button"><h1>StudyHub</h1></button>
             </a>
             <a href="{% url 'submit_material' %}">
+                <!-- Button for submitting material -->
                 <button type="button" class="submit-button" id="submit_button">Submit</button>
             </a>
         </div>
@@ -20,17 +22,20 @@
 
     <div class="container">
         <h1>Material List</h1>
+        <!-- Form for searching materials -->
         <form method="get" action="{% url 'material_search' %}">
             <input type="text" name="q" placeholder="Search materials">
             <select name="category">
                 <option value="">None</option>
                 {% for category in categories %}
+                    <!-- Dropdown options for categories -->
                     <option value="{{ category }}">{{ category }}</option>
                 {% endfor %}
             </select>
             <select name="grade">
                 <option value="">None</option>
                 {% for grade in grades %}
+                    <!-- Dropdown options for grades -->
                     <option value="{{ grade }}">{{ grade }}</option>
                 {% endfor %}
             </select>
@@ -47,8 +52,10 @@
                     </div>
                     <div>
                         {% if material.url %}
+                            <!-- Display material URL if available -->
                             <p><strong>URL:</strong> <a href="{{ material.url }}">{{ material.url }}</a></p>
                         {% elif material.file %}
+                            <!-- Display material file download link if available -->
                             <p><strong>File:</strong> <a href="{{ material.file.url }}" download>Download</a></p>
                         {% endif %}
                     </div>

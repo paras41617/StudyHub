@@ -20,10 +20,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('submit/', submit_material, name='submit_material'),
-    path('', material_list, name='material_list'),
-    path('category/<int:category_id>/', material_category, name='material_category'),
-    path('search/', material_search, name='material_search'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('submit/', submit_material, name='submit_material'),  # URL pattern for submitting material
+    path('', material_list, name='material_list'),  # URL pattern for material list
+    path('category/<int:category_id>/', material_category, name='material_category'),  # URL pattern for material category
+    path('search/', material_search, name='material_search'),  # URL pattern for material search
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)  # Serve static files during development
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # Serve media files during development
