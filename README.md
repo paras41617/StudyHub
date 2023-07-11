@@ -58,6 +58,5 @@ Run Server
 
 ## Video Link
 
-https://github.com/paras41617/StudyHub/assets/54182371/a717ff3b-b108-42d8-94dc-6be50eb3873f
-
+https://drive.google.com/file/d/1CEmk_uXl1NTbmoaNH8r7jenJrx_5Jv9Z/view?usp=sharing
 
