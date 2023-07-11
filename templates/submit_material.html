@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Submit Material</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/submit.css' %}">
+    <script src="{% static 'js/submit_material.js' %}"></script>
+</head>
+
+<body>
+    <header>
+        <div id="title" class="container">
+            <a href="/">
+                <button style="text-decoration: none; background: none; border:none; font-size: large;" type="button">
+                    <h1>StudyHub</h1>
+                </button>
+            </a>
+            <a href="{% url 'material_list' %}">
+                <button type="button" class="submit-button" id="submit_button">View</button>
+            </a>
+        </div>
+    </header>
+    <h1 style="margin-top: 20px;">Submit Material</h1>
+    <form method="post" enctype="multipart/form-data" action="{% url 'submit_material' %}">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" , name="name" />
+        <label for="id_material_type">Material Type:</label>
+        <select id="id_material_type" name="material_type" onchange="toggleInputField()">
+            <option value="url">URL</option>
+            <option value="file">File</option>
+        </select>
+
+        <div id="url-input">
+            <label for="id_url">URL:</label>
+            <input type="url" id="id_url" name="url">
+        </div>
+
+        <div id="file-input" class="input-container">
+            <label for="id_file">File:</label>
+            <input type="file" id="id_file" name="file">
+        </div>
+
+        <label for="id_category">Category:</label>
+        <select id="id_category" name="category" onchange="toggleCategoryInput()">
+            {% for category in categories %}
+            <option value="{{ category.pk }}">{{ category.name }}</option>
+            {% endfor %}
+            <option value="none">None</option>
+            <option value="new">Create New Category</option>
+        </select>
+
+        <label for="id_grade">Grade:</label>
+        <select id="id_grade" name="grade" onchange="toggleGradeInput()">
+            {% for grade in grades %}
+            <option value="{{ grade.pk }}">{{ grade.name }}</option>
+            {% endfor %}
+            <option value="none">None</option>
+            <option value="new">Create New Grade</option>
+        </select>
+
+        <input type="text" id="id_new_category" name="new_category" placeholder="Enter New Category"
+            class="input-container">
+
+        <input type="text" id="id_new_grade" name="new_grade" placeholder="Enter New Grade" class="input-container">
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>

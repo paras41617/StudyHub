@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Material List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/material.css' %}">
+</head>
+<body>
+    <header>
+        <div id="title" class="container">
+            <a href="/">
+                <button style="text-decoration: none; background: none; border:none; font-size: large;" type="button"><h1>StudyHub</h1></button>
+            </a>
+            <a href="{% url 'submit_material' %}">
+                <button type="button" class="submit-button" id="submit_button">Submit</button>
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Material List</h1>
+        <form method="get" action="{% url 'material_search' %}">
+            <input type="text" name="q" placeholder="Search materials">
+            <select name="category">
+                <option value="">None</option>
+                {% for category in categories %}
+                    <option value="{{ category }}">{{ category }}</option>
+                {% endfor %}
+            </select>
+            <select name="grade">
+                <option value="">None</option>
+                {% for grade in grades %}
+                    <option value="{{ grade }}">{{ grade }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Search</button>
+        </form>
+
+        <ul>
+            {% for material in materials %}
+                <li>
+                    <div>
+                        <strong>{{ material.name }}</strong>
+                        <p><strong>Category:</strong> {{ material.category.name }}</p>
+                        <p><strong>Grade:</strong> {{ material.grade.name }}</p>
+                    </div>
+                    <div>
+                        {% if material.url %}
+                            <p><strong>URL:</strong> <a href="{{ material.url }}">{{ material.url }}</a></p>
+                        {% elif material.file %}
+                            <p><strong>File:</strong> <a href="{{ material.file.url }}" download>Download</a></p>
+                        {% endif %}
+                    </div>
+                </li>
+            {% empty %}
+                <li>No materials found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
